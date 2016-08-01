@@ -1,63 +1,37 @@
-# neural-style
+# 照片风格转换
 
-An implementation of [neural style][paper] in TensorFlow.
+项目主要参考Anish Athalye的[Github项目][github]
 
-This implementation is a lot simpler than a lot of the other ones out there,
-thanks to TensorFlow's really nice API and [automatic differentiation][ad].
+该项目是基于TensorFlow进行的视频图像转化，参考[neural style][paper]这篇文章。
 
-TensorFlow doesn't support [L-BFGS][l-bfgs] (which is what the original authors
-used), so we use [Adam][adam]. This may require require a little bit more
-hyperparameter tuning to get nice results.
+TensorFlow 并不支持 [L-BFGS][l-bfgs] (论文所用算法), 所以我们使用了 [Adam][adam]，这样可能需要用更多的参数来获得理想的转换图片.
 
-TensorFlow seems to be [slower][tensorflow-benchmarks] than a lot of the other
-deep learning frameworks out there. I'm sure this implementation could be
-improved, but it would probably take improvements in TensorFlow itself as well
-to get it to operate at the same speed as other implementations. As of now, it
-seems to be around 3x slower than implementations using Torch.
+TensorFlow 可能比其他的深度学习算法稍微[慢一些][tensorflow-benchmarks]。 
+我想通过修改tensorFlow的实现方式，算法效率一定会再高一些。
+现在，使用TensorFlow实现大概要比Torch工具慢3倍
 
-## Running
+## 如何运行
 
-`python neural_style.py --content <content file> --styles <style file> --output <output file>`
+在项目根目录下键入：
 
-(run `python neural_style.py --help` to see a list of all options)
+`python neural_style.py --content 原始图片文件名 --styles 风格图片文件名 --out 生成图片文件名`
 
-## Example 1
 
-Running it for 500-2000 iterations seems to produce nice results. With certain
-images or output sizes, you might need some hyperparameter tuning (especially
-`--content-weight`, `--style-weight`, and `--learning-rate`).
+## 例子
 
-The following example was run for 1000 iterations to produce the result (with
-default parameters):
+使用 500-2000 迭代次数就可以有一个很不错的结果。
+
+这是一个迭代了1000次的例子(使用默认参数):
 
 ![output](examples/1-output.jpg)
 
-These were the input images used (me sleeping at a hackathon and Starry Night):
+原始图片:
 
 ![input-content](examples/1-content.jpg)
 
 ![input-style](examples/1-style.jpg)
 
-## Example 2
-
-The following example demonstrates style blending, and was run for 1000
-iterations to produce the result (with style blend weight parameters 0.8 and
-0.2):
-
-![output](examples/2-output.jpg)
-
-The content input image was a picture of the Stata Center at MIT:
-
-![input-content](examples/2-content.jpg)
-
-The style input images were Picasso's "Dora Maar" and Starry Night, with the
-Picasso image having a style blend weight of 0.8 and Starry Night having a
-style blend weight of 0.2:
-
-![input-style](examples/2-style1.jpg)
-![input-style](examples/2-style2.jpg)
-
-## Requirements
+## 环境需要
 
 * TensorFlow
 * SciPy
@@ -77,3 +51,4 @@ Copyright (c) 2015-2016 Anish Athalye. Released under GPLv3. See
 [ad]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [tensorflow-benchmarks]: https://github.com/soumith/convnet-benchmarks
 [license]: LICENSE.txt
+[github]: https://github.com/anishathalye/neural-style
