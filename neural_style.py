@@ -14,10 +14,10 @@ from argparse import ArgumentParser
 CONTENT_WEIGHT = 5e0
 STYLE_WEIGHT = 1e2
 TV_WEIGHT = 1e2
-LEARNING_RATE = 1e1
+LEARNING_RATE = 1e2
 STYLE_SCALE = 1.0
 ITERATIONS = 1000
-VGG_PATH = '../imagenet-vgg-verydeep-19.mat'
+VGG_PATH = './imagenet-vgg-verydeep-19.mat'
 
 
 def build_parser():
